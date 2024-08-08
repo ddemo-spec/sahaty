@@ -1,0 +1,87 @@
+http://localhost:8000/userLogin/
+{"national_number":"1234","password":"1234"}
+if no doctor
+{
+    "res": "ok",
+    "data": {
+        "id": 1,
+        "name": "ahmad",
+        "national_number": "1234",
+        "phone": "0999999999",
+        "image": "http:/localhost:8000/media/users/GAN_Tech_Explained_Springwise.jpg",
+        "bdate": "21-1-2020",
+        "gender": "male",
+        "weight": 70,
+        "age": 23,
+        "blood": "O+",
+        "dr_name": "",
+        "dr_phone": "",
+		"medical_images": [],
+        "medical_analayses": []
+    }
+}
+
+if doctor
+{
+    "res": "ok",
+    "data": {
+        "id": 1,
+        "name": "ahmad",
+        "national_number": "1234",
+        "phone": "0999999999",
+        "image": "http:/localhost:8000/media/users/GAN_Tech_Explained_Springwise.jpg",
+        "bdate": "21-1-2020",
+        "gender": "male",
+        "weight": 70,
+        "age": 23,
+        "blood": "O+",
+        "dr_name": "ali",
+        "dr_phone": "0999999999",
+		"medical_images": [],
+        "medical_analayses": []
+    }
+}
+===============================================================================
+http://localhost:8000/clinicLogin/
+{"id":1,"password":"1234"}
+
+{
+    "res": "ok",
+    "data": {
+        "id": 1,
+        "dr_name": "ali",
+        "location": "homs akrama",
+        "specialist": "heart",
+        "section": 1,
+        "phone": "0999999999"
+    }
+}
+===============================================================================
+http://localhost:8000/centerLogin/
+{"id":1,"password":"1234"}
+
+{
+    "res": "ok",
+    "data": {
+        "id": 1,
+        "name": "center1",
+        "description": "dddddddddddddddddddddddddd",
+        "location": "homs alwaar",
+        "section": 1,
+        "phone": "0999999999"
+    }
+}
+===============================================================================
+http://localhost:8000/hospitalLogin/
+{"id":1,"password":"1234"}
+{
+    "res": "ok",
+    "data": {
+        "id": 1,
+        "name": "Alzaeem",
+        "specialist": "heart",
+        "location": "homs akrama",
+        "section": 1,
+        "phone": "0999999999"
+    }
+}
