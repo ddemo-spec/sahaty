@@ -1,5 +1,6 @@
 import json
 import base64
+from django.shortcuts import render
 from .models import *
 from django.forms.models import model_to_dict
 from django.http import JsonResponse
@@ -9,6 +10,8 @@ from django.core.files.base import ContentFile
 from django.views.decorators.csrf import csrf_exempt
 
 
+def home(request):
+    return render(request,"base.html")
 
 @csrf_exempt
 def userLogin(request):
