@@ -890,7 +890,7 @@ def confirmBooking(request):
 		except Exception as e:
 			print(e)
 			return JsonResponse({'response':'error'})	
-
+from .service import send_topic_notification
 @csrf_exempt		
 def cancellBooking(request):
 		try:
@@ -902,6 +902,13 @@ def cancellBooking(request):
 			if admin_type=="clinics":
 				clinics=SectionClinicBooking.objects.get(id=booking_id)
 				clinics.commited=1
+				year = clinics.year
+				month = clinics.month
+				day = clinics.day
+				hour = clinics.hour
+				print(f"تم الغاء موعد مريض بتاريخ {day}/{month}/{year} الساعة {hour}")
+				message = f"تم الغاء موعد مريض بتاريخ {day}/{month}/{year} الساعة {hour}"
+				send_topic_notification('user', 'تم الغاء موعد', message)
 				clinics.save()
 	
 			if admin_type=="centers":

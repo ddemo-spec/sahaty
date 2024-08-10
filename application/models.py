@@ -13,15 +13,23 @@ class User(models.Model):
 	blood=models.CharField(max_length=10)
 	qr=models.CharField(max_length=100,null=True)
 
+	def __str__(self):
+		return self.name
 
 class UserDoctor(models.Model):
 	user = models.ForeignKey("User", on_delete=models.CASCADE)
 	doctor = models.ForeignKey("SectionClinic", on_delete=models.CASCADE)
 	
+	def __str__(self):
+		return (f"{self.user.name}-{self.doctor.dr_name}")
+	
 class UserMedicalImages(models.Model):
 	image = models.ImageField(upload_to='UserMedicalImages/')
 	user = models.ForeignKey("User", on_delete=models.CASCADE)
 
+	def __str__(self):
+		return self.user.name
+		
 class UserMedicalAnalays(models.Model):
 	type = models.CharField(max_length=100)
 	normal=models.IntegerField()
@@ -33,6 +41,9 @@ class UserMedicalAnalays(models.Model):
 	src_phone=models.CharField(max_length=100)
 	user = models.ForeignKey("User", on_delete=models.CASCADE)
 
+	def __str__(self):
+		return (f"{self.user.name}-{self.type} ")
+
 class UserRecordsClinic(models.Model):
 	date = models.CharField(max_length=100)
 	hour=models.CharField(max_length=100)
@@ -41,6 +52,9 @@ class UserRecordsClinic(models.Model):
 	review_date = models.CharField(max_length=100)
 	description=models.CharField(max_length=200,null=True)
 
+	def __str__(self):
+		return (f"{self.user.name}")
+	
 class UserRecordsClinicMedicine(models.Model):
 	title = models.CharField(max_length=100)
 	record = models.ForeignKey("UserRecordsClinic", on_delete=models.CASCADE)
@@ -86,16 +100,23 @@ class ApplicationService(models.Model):
 	description = models.CharField(max_length=100)
 	logo_image = models.ImageField(upload_to='services_logos/')
 
+	def __str__(self):
+		return self.title
 	
 class Section(models.Model):
 	title = models.CharField(max_length=100)
 	logo_image = models.ImageField(upload_to='sections_logos/')
 	application_service=models.ForeignKey("ApplicationService", on_delete=models.CASCADE)
 
+	def __str__(self):
+		return self.title
+	
 class SectionService(models.Model):
 	text = models.CharField(max_length=100)
 	section=models.ForeignKey("Section", on_delete=models.CASCADE)
 	
+	def __str__(self):
+		return self.section.title
 
 class SectionClinic(models.Model):
 	dr_name = models.CharField(max_length=100)
@@ -106,6 +127,9 @@ class SectionClinic(models.Model):
 	password = models.CharField(max_length=100)
 	qr=models.CharField(max_length=100,null=True)
 	
+	def __str__(self):
+		return (f"{self.section.title}-{self.dr_name}")
+
 class SectionCenter(models.Model):
 	name = models.CharField(max_length=100)
 	description = models.CharField(max_length=100)
@@ -115,6 +139,9 @@ class SectionCenter(models.Model):
 	password = models.CharField(max_length=100)
 	qr=models.CharField(max_length=100,null=True)
 	
+	def __str__(self):
+		return (f"{self.section.title}-{self.name}")
+	
 class SectionHospital(models.Model):
 	name = models.CharField(max_length=100)
 	specialist = models.CharField(max_length=100)
@@ -123,6 +150,9 @@ class SectionHospital(models.Model):
 	phone=models.CharField(max_length=100)
 	password = models.CharField(max_length=100)
 	qr=models.CharField(max_length=100,null=True)
+
+	def __str__(self):
+		return (f"{self.section.title}-{self.name}")
 	
 class SectionClinicBooking(models.Model):
 	year=models.CharField(max_length=100)
